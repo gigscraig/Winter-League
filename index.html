@@ -3,14 +3,14 @@
 <head>
     <link rel="stylesheet" href="stylesheets/screen.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
-    <title>CGCSL</title>
+    <title>Ernie Batey Winter League 2015/16</title>
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 
 <body ng-app="league" ng-controller="LeagueCtrl">
 
     <div id="headerBar">
-        <h1 ng-click="showFixtures = !showFixtures">Ernie Batey 2015/16</h1>
+        <h1 ng-click="showFixtures = !showFixtures">Ernie Batey Winter League 2015/16</h1>
 
         <!--         
             <ul>
@@ -37,7 +37,7 @@
                         <th class="lost">L</th>
                         <th class="pts">Pts</th>
                     </tr>
-                    <tr ng-cloak ng-repeat="value in trows|orderBy:'(win * 3) + draw + bonus':true">
+                    <tr ng-cloak ng-repeat="value in trows|orderBy:'(win * 2) + draw':true">
                         <td class="golfer">
                             <span class="player">{{ value.name }}</span>
                         </td>
@@ -48,7 +48,8 @@
                         <td class="lost">{{ value.lose }}</td>
                         <td class="pts">{{ (value.win * 2) + value.draw }}</td>
                     </tr>
-                </table>
+                </table> 
+
                 <ul id="resultList">
                     <li class="resultbox" ng-cloak ng-repeat="(key, fixture) in data.fixtures">
                         <span class="timeStamp">
@@ -57,6 +58,7 @@
                         </span>
                     </li>
                 </ul>
+
             </div>
         </div>
 
@@ -65,23 +67,21 @@
                 <form name="fixform" class="form-horizontal box" novalidate ng-submit="addFixture()">
 
                     <div id="selections">
-                       
-                       <div>
-						<select class="form-control Playername" name="home" ng-model="home" required>
-                            <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}</option>
-                        </select>
+                        <div>
+    						<select class="form-control Playername" name="home" ng-model="home" required>
+                                <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}</option>
+                            </select>
                         </div>
                         <div>    
-        
                             <select class="form-control Playername" name="result" ng-model="result" required>
                                 <option value="Beat">Beat</option>
                                 <option value="Draw">Drew With</option>
                             </select> 
                         </div>
                         <div>
-                        <select class="form-control Playername" name="away" ng-model="away" required>
-                            <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}</option>
-                        </select>
+                            <select class="form-control Playername" name="away" ng-model="away" required>
+                                <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}</option>
+                            </select>
                         </div>
                     </div>
                     <input ng-hide="fixform.$invalid" type="submit" class="btn btn-success" value="Add Result" ng-disabled="fixform.$invalid">
