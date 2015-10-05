@@ -239,6 +239,10 @@ body{
 			width:100%;
 			display: table;
 			color:#fff !important;
+
+	  	div{
+		  padding: 5px;
+		}
 		
 		.form-control{
 			color:#fff !important;
@@ -252,9 +256,9 @@ body{
 		}
 				
 		.Playername{
-			width:47%;
+			width:100%;
 			display: inline-block;
-			 height:42px;
+			 height:40px;
 			 font-size:15px;
 			 padding-left:10px;
 			 color: rgba (255,255,255,0.7) !important;

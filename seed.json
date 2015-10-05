@@ -1,9 +1,15 @@
 {
-	"golfers": [{"name": "andy", "twitter": "@awaygray"}, {"name": "paul", "twitter": "@gigscraig"}, {"name": "kevin", "twitter": "@kevinpgray"}],
-	"fixtures":[
-		{"timestamp": 1398845244000, "result": "andy beat kevin 2&1", "stats": [{"golfer":"andy", "win": 1}, {"golfer":"kevin", "lose": 1}]},
-		{"timestamp": 1398845244000, "result": "paul beat kevin 4&3", "stats": [{"golfer":"paul", "win": 1}, {"golfer":"kevin", "lose": 1}]},
-		{"timestamp": 1398845244000, "result": "paul drew with andy", "stats": [{"golfer":"paul", "draw": 1}, {"golfer":"andy", "draw": 1}]},
-		{"timestamp": 1398845244000, "result": "kevin beat andy 5&4", "stats": [{"golfer":"kevin", "win": 1, "bonus": 1}, {"golfer":"andy", "lose": 1}]}
-		]
+	"golfers": [
+	{"name": "S Thompson / P Moloney"},
+	{"name": "C G Beech / K Clegg"}, 
+	{"name": "P A H Johnson / D Boynton"}, 
+	{"name": "A D Rosenberg / J Neuling"},
+	{"name": "P Cosh / L Ellis"},
+	{"name": "C Beard / P Hoyle"},
+	{"name": "M Richmond / A Gray"},
+	{"name": "G Morrison / C Smith"},
+	{"name": "R Bloomfield / S Meakin"},
+	{"name": "K Qureshi / M Pickles"},
+	{"name": "S Richmond/ A Richmond"},
+	{"name": "G Iball / B Baguley"}]
 }

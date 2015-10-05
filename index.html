@@ -2,110 +2,116 @@
 
 <head>
     <link rel="stylesheet" href="stylesheets/screen.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui"/>
     <title>Ernie Batey Winter League 2015/16</title>
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 
 <body ng-app="league" ng-controller="LeagueCtrl">
 
-    <div id="headerBar">
-        <h1 ng-click="showFixtures = !showFixtures">Ernie Batey Winter League 2015/16</h1>
+<div id="headerBar">
+    <h1 ng-click="showFixtures = !showFixtures">Ernie Batey Winter League 2015/16</h1>
 
-        <!--         
-            <ul>
-        	<span class="pickpage">
-            <li value="Table" ng-click="showFixtures = false" ng-class="{selected: showFixtures == false, table: true}">
-                <span class="whichpage">Table</span>
-            </li>
-            <li value="Fixture" ng-click="showFixtures = true" ng-class="{selected: showFixtures == true, results: true}">
-                <span class="whichpage">Results</span>
-            </li>
-            </span>
-        </ul> -->
-    </div>
+    <!--
+        <ul>
+        <span class="pickpage">
+        <li value="Table" ng-click="showFixtures = false" ng-class="{selected: showFixtures == false, table: true}">
+            <span class="whichpage">Table</span>
+        </li>
+        <li value="Fixture" ng-click="showFixtures = true" ng-class="{selected: showFixtures == true, results: true}">
+            <span class="whichpage">Results</span>
+        </li>
+        </span>
+    </ul> -->
+</div>
 
-    <div id="wrapper">
-        <div ng-hide="showFixtures">
-            <div class="well col-sm-6 col col-sm-offset-3">
-                <table class="table table-striped">
-                    <tr>
-                        <th class="golfer">Team</th>
-                        <th class="win">P</th>
-                        <th class="win">W</th>
-                        <th class="draw">D</th>
-                        <th class="lost">L</th>
-                        <th class="pts">Pts</th>
-                    </tr>
-                    <tr ng-cloak ng-repeat="value in trows|orderBy:'(win * 2) + draw':true">
-                        <td class="golfer">
-                            <span class="player">{{ value.name }}</span>
-                        </td>
-                       
-                        <td class="win">{{ value.win + value.draw + value.lose}}</td>
-                        <td class="win">{{ value.win }}</td>
-                        <td class="draw">{{ value.draw }}</td>
-                        <td class="lost">{{ value.lose }}</td>
-                        <td class="pts">{{ (value.win * 2) + value.draw }}</td>
-                    </tr>
-                </table> 
+<div id="wrapper">
+    <div ng-hide="showFixtures">
+        <div class="well col-sm-6 col col-sm-offset-3">
+            <table class="table table-striped">
+                <tr>
+                    <th class="golfer">Team</th>
+                    <th class="win">P</th>
+                    <th class="win">W</th>
+                    <th class="draw">D</th>
+                    <th class="lost">L</th>
+                    <th class="pts">Pts</th>
+                </tr>
+                <tr ng-cloak ng-repeat="value in trows|orderBy:'(win * 2) + draw':true">
+                    <td class="golfer">
+                        <span class="player">{{ value.name }}</span>
+                    </td>
 
-                <ul id="resultList">
-                    <li class="resultbox" ng-cloak ng-repeat="(key, fixture) in data.fixtures">
+                    <td class="win">{{ value.win + value.draw + value.lose}}</td>
+                    <td class="win">{{ value.win }}</td>
+                    <td class="draw">{{ value.draw }}</td>
+                    <td class="lost">{{ value.lose }}</td>
+                    <td class="pts">{{ (value.win * 2) + value.draw }}</td>
+                </tr>
+            </table>
+
+            <ul id="resultList">
+                <li class="resultbox" ng-cloak ng-repeat="(key, fixture) in data.fixtures">
                         <span class="timeStamp">
                             <em>{{fixture.timestamp | date:'dd MMM yyyy'}}</em>
                             <span class="pull-right">{{fixture.result}}</span>
                         </span>
-                    </li>
-                </ul>
+                </li>
+            </ul>
 
-            </div>
-        </div>
-
-        <div ng-show="showFixtures">
-            <div class="well col-sm-6 col-sm-offset-3">
-                <form name="fixform" class="form-horizontal box" novalidate ng-submit="addFixture()">
-
-                    <div id="selections">
-                        <div>
-    						<select class="form-control Playername" name="home" ng-model="home" required>
-                                <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}</option>
-                            </select>
-                        </div>
-                        <div>    
-                            <select class="form-control Playername" name="result" ng-model="result" required>
-                                <option value="Beat">Beat</option>
-                                <option value="Draw">Drew With</option>
-                            </select> 
-                        </div>
-                        <div>
-                            <select class="form-control Playername" name="away" ng-model="away" required>
-                                <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <input ng-hide="fixform.$invalid" type="submit" class="btn btn-success" value="Add Result" ng-disabled="fixform.$invalid">
-                </form>
-            </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
-    <script src="https://cdn.firebase.com/v0/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <div ng-show="showFixtures">
+        <div class="well col-sm-6 col-sm-offset-3">
+            <form name="fixform" class="form-horizontal box" novalidate ng-submit="addFixture()">
 
-    <script type="text/javascript">
+                <div id="selections">
+                    <div>
+                        <select class="form-control Playername" name="home" ng-model="home" required>
+                            <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-control Playername" name="result" ng-model="result" required>
+                            <option value="Beat">Beat</option>
+                            <option value="Draw">Drew With</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="form-control Playername" name="away" ng-model="away" required>
+                            <option ng-repeat="golfer in data.golfers" value="{{ golfer.name }}">{{ golfer.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <input ng-hide="fixform.$invalid" type="submit" class="btn btn-success" value="Add Result"
+                               ng-disabled="fixform.$invalid">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+
+<script type="text/javascript">
     angular.module('league', ['firebase']).controller('LeagueCtrl', ['$scope', '$firebase',
-        function($scope, $firebase) {
+        function ($scope, $firebase) {
             var FB_ROOT = 'https://winterleague.firebaseIO.com';
             var data_ref = new Firebase(FB_ROOT);
             $scope.data = $firebase(data_ref);
             $scope.showFixtures = false;
 
-            $scope.generateTable = function() {
+            $scope.generateTable = function () {
                 var table = {};
-                angular.forEach($scope.data.golfers, function(value, key) {
+                angular.forEach($scope.data.golfers, function (value, key) {
                     if (value.name) {
                         table[value.name] = {
                             name: "" + value.name,
@@ -116,11 +122,11 @@
                     }
                 });
 
-                angular.forEach($scope.data.fixtures, function(fvalue, fkey) {
+                angular.forEach($scope.data.fixtures, function (fvalue, fkey) {
                     if (fvalue.stats) {
-                        angular.forEach(fvalue.stats, function(svalue, skey) {
+                        angular.forEach(fvalue.stats, function (svalue, skey) {
                             if (table[svalue.golfer]) {
-                                angular.forEach(["win", "lose", "draw"], function(type) {
+                                angular.forEach(["win", "lose", "draw"], function (type) {
                                     if (svalue[type]) {
                                         table[svalue.golfer][type] = table[svalue.golfer][type] + svalue[type];
                                     }
@@ -135,7 +141,7 @@
 
             $scope.$watch('data', $scope.generateTable, true);
 
-            $scope.addFixture = function() {
+            $scope.addFixture = function () {
                 if ($scope.home && $scope.away && $scope.result) {
                     if ($scope.result == 'Draw') {
                         new Firebase(FB_ROOT + '/fixtures/').push({
@@ -173,7 +179,7 @@
             // };
         }
     ]);
-    </script>
+</script>
 </body>
 
 </html>
