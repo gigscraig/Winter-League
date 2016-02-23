@@ -1,0 +1,4 @@
+$('#id1 p').each(function() {
+    var text = $(this).text();
+    $(this).text(text.replace('dog', 'doll')); 
+});
